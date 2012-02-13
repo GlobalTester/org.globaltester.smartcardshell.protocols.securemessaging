@@ -60,10 +60,8 @@ public class ProtocolProvider extends AbstractScshProtocolProvider {
 	private static ScshCommand initSM;
 	{
 		initSM = new ScshCommand("initSM");
-		initSM.setHelp("Initialize Securemessaging with the given keys");
+		initSM.setHelp("Initialize SecureMessaging with the given keys");
 		initSM.setHelpReturn("");
-
-		//sKenc, sKmac, ssc)
 		
 		ScshCommandParameter sKencParam = new ScshCommandParameter("sKenc");
 		sKencParam.setHelp("javax.crypto.SecretKey used for encrypting the Cryptogram of secured APDU");
@@ -86,7 +84,22 @@ public class ProtocolProvider extends AbstractScshProtocolProvider {
 		impl += "sm.setInitialized(true);\n";
 		initSM.setImplementation(impl);
 		
-		//FIXME make sure the initialization state is rest when plain APDU is transmitted or card was reset
+	}
+		
+	private static ScshCommand resetSM;
+	{
+		resetSM = new ScshCommand("resetSM");
+		resetSM.setHelp("Reset SecureMessaging state of this card");
+		resetSM.setHelpReturn("");
+
+		String impl = "";
+		impl += "var sm = this.gt_SecureMessaging_getSM();\n";
+		impl += "sm.setKeyEnc(null);\n";
+		impl += "sm.setKeyMac(null);\n";
+		impl += "sm.setSendSequenceCounter(null);\n";
+		impl += "sm.setInitialized(false);\n";
+		resetSM.setImplementation(impl);
+		
 	}
 	
 	private static ScshCommand getSM;
@@ -107,6 +120,7 @@ public class ProtocolProvider extends AbstractScshProtocolProvider {
 	@Override
 	public void addCommands(List<ScshCommand> commandList) {
 		commandList.add(initSM);
+		commandList.add(resetSM);
 		commandList.add(getSM);
 		commandList.add(sendSM);
 		commandList.add(sendCommand);
