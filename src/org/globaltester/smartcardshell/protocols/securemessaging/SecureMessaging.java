@@ -437,8 +437,6 @@ public class SecureMessaging {
 		byte[] paddedData = padding(toPad, 8);
 		bb.append(paddedData);
 
-		ssc.increment();
-
 		byte[] cc2 = Crypto.computeMAC(bb.getBytes(), skmac, "ISO9797Alg3Mac");
 		System.out.println("CC': " + HexString.hexifyByteArray(cc2));
 
