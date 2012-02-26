@@ -349,8 +349,9 @@ public class SecureMessaging {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		out.write(data, 0, data.length);
-		out.write((sw & 0xFF00) >> 8);
-		out.write(sw & 0x00FF);
+		//FIXME separate sw from response in SM case
+		//out.write((sw & 0xFF00) >> 8);
+		//out.write(sw & 0x00FF);
 		return out.toByteArray();
 
 		// Bei Fehler ssc.decrease() durchführen!
