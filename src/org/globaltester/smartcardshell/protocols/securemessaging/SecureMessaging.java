@@ -336,6 +336,8 @@ public class SecureMessaging {
 						+ HexString.hexifyByteArray(cc));
 				finished = true;
 				break;
+			default:
+				//TODO handle invalid tag in SM response field
 			}
 		}
 
@@ -347,14 +349,16 @@ public class SecureMessaging {
 			System.out.println("ERROR: Invalid MAC!");
 		}
 
+		//TODO handle inconsistent SW within DO99 compared to APDU SW
+		if (sw==0) {
+			System.out.println("WARNING: No DO99 found!");
+		}
+
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		out.write(data, 0, data.length);
-		//FIXME separate sw from response in SM case
-		//out.write((sw & 0xFF00) >> 8);
-		//out.write(sw & 0x00FF);
 		return out.toByteArray();
 
-		// Bei Fehler ssc.decrease() durchführen!
+		//TODO Bei Fehler ssc.decrease() durchführen!
 	}
 
 	private byte[] readDO87(DataInputStream in, boolean do85)
