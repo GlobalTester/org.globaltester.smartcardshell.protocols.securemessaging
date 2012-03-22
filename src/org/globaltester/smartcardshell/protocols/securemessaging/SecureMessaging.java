@@ -30,9 +30,6 @@ public class SecureMessaging {
 
 	private SSC ssc;
 
-	//FIXME check why this exists in this class and in Crypto
-	private static byte[] nullIV = { 0, 0, 0, 0, 0, 0, 0, 0 };
-
 	private Cipher cipher;
 	private boolean initialized;
 
@@ -297,7 +294,7 @@ public class SecureMessaging {
 	}
 
 	public byte[] unwrap(byte[] encryptedData) throws IOException {
-		IvParameterSpec ivSpec = new IvParameterSpec(nullIV);
+		IvParameterSpec ivSpec = new IvParameterSpec(Crypto.nullIV);
 		try {
 			cipher.init(Cipher.DECRYPT_MODE, skenc, ivSpec);
 		} catch (InvalidKeyException e) {

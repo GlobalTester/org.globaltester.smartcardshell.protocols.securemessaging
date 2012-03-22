@@ -24,7 +24,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public class Crypto {
 
-	private static byte[] nullIV = {0,0,0,0,0,0,0,0};
+	public static byte[] nullIV = {0,0,0,0,0,0,0,0};
 	private static IvParameterSpec ivSpec = null;
 	
 	public static int BLOCKLENGTH = 8;
