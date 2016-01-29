@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GlobalTester SecureMessaging UI
 Bundle-SymbolicName: org.globaltester.smartcardshell.protocols.securemessaging.ui
-Bundle-Version: 3.0.1
+Bundle-Version: 3.0.3
 Bundle-Activator: org.globaltester.smartcardshell.protocols.securemessaging.ui.Activator
 Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.ui,
