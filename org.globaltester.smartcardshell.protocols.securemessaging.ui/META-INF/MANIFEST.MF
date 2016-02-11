@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: GlobalTester SecureMessaging UI
+Bundle-Name: GT Protocol SecureMessaging UI
 Bundle-SymbolicName: org.globaltester.smartcardshell.protocols.securemessaging.ui
 Bundle-Version: 3.0.3
 Bundle-Activator: org.globaltester.smartcardshell.protocols.securemessaging.ui.Activator
