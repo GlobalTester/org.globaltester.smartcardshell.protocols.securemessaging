@@ -4,7 +4,6 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.spec.InvalidKeySpecException;
 
 import javax.crypto.BadPaddingException;
@@ -17,8 +16,6 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
-
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 
 
@@ -48,7 +45,7 @@ public class Crypto {
 		} catch (NoSuchPaddingException e) {
 			e.printStackTrace();
 		}
-
+		
 		/*
 		 * Get the cipher
 		 */
@@ -83,10 +80,10 @@ public class Crypto {
 	}
 	
 	public static byte[] computeChecksum(byte[] plaintext, SecretKey skenc, boolean usessc) {
-
+		
 		if (plaintext.length == 0)
 			return new byte[0];
-
+		
 		SecretKey key = null;
 		Cipher c = null;
 		Cipher cc = null;
@@ -99,7 +96,7 @@ public class Crypto {
 		 * Get the key and divide it into 3 single DES keys if DES 3 is
 		 * referenced
 		 */
-
+		
 		key = skenc;
 		
 		if (key.getEncoded().length == 8) {
@@ -114,7 +111,7 @@ public class Crypto {
 					.getInstance("DES").generateSecret(new DESKeySpec(key1)); //$NON-NLS-1$
 			k2 = SecretKeyFactory
 					.getInstance("DES").generateSecret(new DESKeySpec(key2)); //$NON-NLS-1$
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,7 +129,7 @@ public class Crypto {
 		} catch (NoSuchPaddingException e) {
 			e.printStackTrace();
 		}
-
+		
 		/*
 		 * do the encryption
 		 */
@@ -168,27 +165,24 @@ public class Crypto {
 		}
 		return y;
 	}
-
+	
 	
 	public static byte[] computeMAC(byte[] plainText, SecretKey key, String algorithm){
 		Mac mac = null;
-
+		
 		try {
 			mac = Mac.getInstance(algorithm,
-					BouncyCastleProvider.PROVIDER_NAME);
+					org.globaltester.cryptoprovider.Crypto.getCryptoProvider());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
-		} catch (NoSuchProviderException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-
+		
 		try {
 			mac.init(key);
 		} catch (InvalidKeyException e) {
 			e.printStackTrace();
 		}
-
+		
 		mac.update(plainText);
 		return mac.doFinal();
 		
@@ -197,7 +191,7 @@ public class Crypto {
 	public static byte[] computeMAC(byte[] plainText, SecretKey key) {
 		return computeMAC(plainText, key, "ISO9797ALG3WITHISO7816-4PADDING");
 	}
-
+	
 	
 	
 	public static SecretKey deriveKey(byte[] keySeed, byte mode){
@@ -235,7 +229,5 @@ public class Crypto {
 		return null;
 	}
 	
-
-
-	
 }
+
