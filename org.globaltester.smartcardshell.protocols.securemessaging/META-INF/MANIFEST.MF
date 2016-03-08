@@ -7,7 +7,8 @@ Bundle-Activator: org.globaltester.smartcardshell.protocols.securemessaging.Acti
 Bundle-Vendor: HJP Consulting GmbH
 Require-Bundle: org.eclipse.core.runtime,
  org.globaltester.smartcardshell;bundle-version="3.0.0",
- org.globaltester.smartcardshell.protocols.iso7816;bundle-version="3.0.0"
+ org.globaltester.smartcardshell.protocols.iso7816;bundle-version="3.0.0",
+ org.globaltester.cryptoprovider
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.globaltester.smartcardshell.protocols.securemessaging

@@ -4,7 +4,6 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.spec.InvalidKeySpecException;
 
 import javax.crypto.BadPaddingException;
@@ -17,8 +16,6 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
-
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 
 
@@ -174,12 +171,8 @@ public class Crypto {
 		Mac mac = null;
 
 		try {
-			mac = Mac.getInstance(algorithm,
-					BouncyCastleProvider.PROVIDER_NAME);
+			mac = Mac.getInstance(algorithm, org.globaltester.cryptoprovider.Crypto.getCryptoProvider());
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (NoSuchProviderException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
