@@ -37,16 +37,7 @@ public class SecureMessaging {
 
 	public SecureMessaging() {
 		ssc = new SSC();
-		java.security.Security
-				.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); // TODO
-																						// check
-																						// where
-																						// this
-																						// call
-																						// should
-																						// be
-																						// placed
-																						// best
+		
 		try {
 			cipher = Cipher.getInstance("DESede/CBC/NoPadding");
 			// mac = Mac.getInstance("ISO9797ALG3WITHISO7816-4PADDING",
@@ -355,7 +346,7 @@ public class SecureMessaging {
 		out.write(data, 0, data.length);
 		return out.toByteArray();
 
-		//TODO Bei Fehler ssc.decrease() durchführen!
+		//TODO Bei Fehler ssc.decrease() durchfï¿½hren!
 	}
 
 	private byte[] readDO87(DataInputStream in, boolean do85)
