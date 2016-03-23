@@ -37,7 +37,7 @@ public class SecureMessaging {
 
 	public SecureMessaging() {
 		ssc = new SSC();
-		
+
 		try {
 			cipher = Cipher.getInstance("DESede/CBC/NoPadding");
 			// mac = Mac.getInstance("ISO9797ALG3WITHISO7816-4PADDING",
