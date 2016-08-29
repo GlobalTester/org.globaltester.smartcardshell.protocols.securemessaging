@@ -44,16 +44,9 @@ public class SecureMessaging {
 			// BouncyCastleProvider.PROVIDER_NAME);
 			// mac = Mac.getInstance("ISO9797Alg3Mac");
 
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchPaddingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // catch (NoSuchProviderException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+		} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+			// ignore, leads to NPE later, thats soon enough for this legacy code
+		}
 	}
 	
 	public boolean isInitialized() {
@@ -288,12 +281,8 @@ public class SecureMessaging {
 		IvParameterSpec ivSpec = new IvParameterSpec(Crypto.nullIV);
 		try {
 			cipher.init(Cipher.DECRYPT_MODE, skenc, ivSpec);
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidAlgorithmParameterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (InvalidKeyException | InvalidAlgorithmParameterException e) {
+			// ignore, leads to error later, thats soon enough for this legacy code
 		}
 		DataInputStream in = new DataInputStream(new ByteArrayInputStream(
 				encryptedData));
@@ -325,7 +314,6 @@ public class SecureMessaging {
 				finished = true;
 				break;
 			default:
-				//TODO handle invalid tag in SM response field
 			}
 		}
 
@@ -337,7 +325,6 @@ public class SecureMessaging {
 			System.out.println("ERROR: Invalid MAC!");
 		}
 
-		//TODO handle inconsistent SW within DO99 compared to APDU SW
 		if (sw==0) {
 			System.out.println("WARNING: No DO99 found!");
 		}
@@ -346,7 +333,6 @@ public class SecureMessaging {
 		out.write(data, 0, data.length);
 		return out.toByteArray();
 
-		//TODO Bei Fehler ssc.decrease() durchf�hren!
 	}
 
 	private byte[] readDO87(DataInputStream in, boolean do85)
@@ -386,13 +372,8 @@ public class SecureMessaging {
 		byte[] paddedData;
 		try {
 			paddedData = cipher.doFinal(ciphertext);
-		} catch (IllegalBlockSizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		} catch (BadPaddingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IllegalBlockSizeException | BadPaddingException e) {
+			// ignore, leads to NPE later, thats soon enough for this legacy code
 			return null;
 		}
 		byte[] data = unpadding(paddedData);
