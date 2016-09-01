@@ -8,7 +8,7 @@ public class SSC {
 	
 	// Default length of SSC:
 	private static int DFLT_SSCLENGTH = 8;
-	//TODO check how to handle this for different length
+	//IMPL check how to handle this for different length
 	
 	private byte[] ssc; 
 	

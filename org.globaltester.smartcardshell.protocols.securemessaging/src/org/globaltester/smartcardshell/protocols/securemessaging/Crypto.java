@@ -1,14 +1,11 @@
 package org.globaltester.smartcardshell.protocols.securemessaging;
 
-import java.security.InvalidAlgorithmParameterException;
+import java.security.GeneralSecurityException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
@@ -59,20 +56,8 @@ public class Crypto {
 		 */
 		try {
 			c.init(mode, key, ivSpec);
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidAlgorithmParameterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			y = c.doFinal(plainText);
-		} catch (IllegalBlockSizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (BadPaddingException e) {
-			// TODO Auto-generated catch block
+		} catch (GeneralSecurityException e) {
 			e.printStackTrace();
 		}
 		return y;
@@ -213,17 +198,8 @@ public class Crypto {
 		SecretKeyFactory desKeyFactory = null;
 		try {
 			desKeyFactory = SecretKeyFactory.getInstance("DESede");
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			return desKeyFactory.generateSecret(new DESedeKeySpec(key));
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
+		} catch (GeneralSecurityException e) {
 			e.printStackTrace();
 		}
 		return null;
