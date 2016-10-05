@@ -4,7 +4,7 @@ Bundle-Name: GT Protocol SecureMessaging
 Bundle-SymbolicName: org.globaltester.smartcardshell.protocols.securemessaging;singleton:=true
 Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.globaltester.smartcardshell.protocols.securemessaging.Activator
-Bundle-Vendor: HJP Consulting GmbH
+Bundle-Vendor: secunet Security Networks AG
 Require-Bundle: org.eclipse.core.runtime,
  org.globaltester.smartcardshell;bundle-version="3.0.0",
  org.globaltester.smartcardshell.protocols.iso7816;bundle-version="3.0.0",
