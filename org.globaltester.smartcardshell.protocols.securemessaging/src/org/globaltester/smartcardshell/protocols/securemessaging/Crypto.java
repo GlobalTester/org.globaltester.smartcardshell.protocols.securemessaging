@@ -153,23 +153,17 @@ public class Crypto {
 	
 	
 	public static byte[] computeMAC(byte[] plainText, SecretKey key, String algorithm){
-		Mac mac = null;
-		
 		try {
-			mac = Mac.getInstance(algorithm,
+			Mac mac = Mac.getInstance(algorithm,
 					org.globaltester.cryptoprovider.Crypto.getCryptoProvider());
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		
-		try {
 			mac.init(key);
-		} catch (InvalidKeyException e) {
+			mac.update(plainText);
+			return mac.doFinal();
+		} catch (InvalidKeyException | NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
 		
-		mac.update(plainText);
-		return mac.doFinal();
+		return new byte[] {};
 		
 	}
 	
