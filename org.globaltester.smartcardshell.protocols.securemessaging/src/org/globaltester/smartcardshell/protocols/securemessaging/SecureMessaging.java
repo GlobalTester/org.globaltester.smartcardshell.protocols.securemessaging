@@ -39,7 +39,7 @@ public class SecureMessaging {
 		ssc = new SSC();
 
 		try {
-			cipher = Cipher.getInstance("DESede/CBC/NoPadding");
+			cipher = Cipher.getInstance("DESede/CBC/NoPadding"); //NOSONAR required by specification
 			// mac = Mac.getInstance("ISO9797ALG3WITHISO7816-4PADDING",
 			// BouncyCastleProvider.PROVIDER_NAME);
 			// mac = Mac.getInstance("ISO9797Alg3Mac");

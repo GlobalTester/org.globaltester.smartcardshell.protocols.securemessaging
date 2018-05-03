@@ -35,8 +35,8 @@ public class Crypto {
 		ivSpec = new IvParameterSpec(nullIV);
 		
 		try {
-			c1 = Cipher.getInstance("DES/CBC/NoPadding");
-			c2 = Cipher.getInstance("DESede/CBC/NoPadding");
+			c1 = Cipher.getInstance("DES/CBC/NoPadding"); //NOSONAR required by specification
+			c2 = Cipher.getInstance("DESede/CBC/NoPadding"); //NOSONAR required by specification
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (NoSuchPaddingException e) {
@@ -104,11 +104,11 @@ public class Crypto {
 		 * Get the cipher object
 		 */
 		try {
-			c = Cipher.getInstance("DES/CBC/NoPadding"); //$NON-NLS-1$
+			c = Cipher.getInstance("DES/CBC/NoPadding"); //$NON-NLS-1$ //NOSONAR required by specification
 			/*
 			 * Cipher for the last round
 			 */
-			cc = Cipher.getInstance("DES/ECB/NoPadding"); //$NON-NLS-1$
+			cc = Cipher.getInstance("DES/ECB/NoPadding"); //$NON-NLS-1$ //NOSONAR required by specification
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (NoSuchPaddingException e) {
