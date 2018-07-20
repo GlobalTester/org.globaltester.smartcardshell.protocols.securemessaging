@@ -120,13 +120,6 @@ public class Crypto {
 		 */
 		try {
 			/*
-			 * first increase the SSC before each verification if session key is
-			 * applied
-			 */
-			//if (keyid == 0xFF || keyid == 0xFD)
-			if (key.getAlgorithm().equals("DESede"))
-				//SendSequenceCounter.increase();
-			/*
 			 * Do the first round with the NULL ICV and the SSC
 			 */
 			ivSpec = new IvParameterSpec(nullIV);
