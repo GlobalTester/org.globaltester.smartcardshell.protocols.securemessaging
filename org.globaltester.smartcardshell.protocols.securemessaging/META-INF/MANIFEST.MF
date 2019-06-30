@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GT Protocol SecureMessaging
 Bundle-SymbolicName: org.globaltester.smartcardshell.protocols.securemessaging;singleton:=true
-Bundle-Version: 3.5.0.qualifier
+Bundle-Version: 3.5.1.qualifier
 Bundle-Activator: org.globaltester.smartcardshell.protocols.securemessaging.Activator
 Bundle-Vendor: secunet Security Networks AG
 Require-Bundle: org.eclipse.core.runtime,
